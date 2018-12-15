@@ -53,11 +53,11 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'wxbackend.checkUserMiddleware.CheckUserMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'wxbackend.checkUserMiddleware.CheckUserMiddleware',
 ]
 
 ROOT_URLCONF = 'angetech.urls'
@@ -228,3 +228,6 @@ SERVICE_FILTER_URLS = [
     (r'/favicon.ico'),
     (r'/reports/*'),
 ]
+
+# 这样就不用转/
+APPEND_SLASH=False
