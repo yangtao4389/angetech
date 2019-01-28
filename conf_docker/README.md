@@ -16,7 +16,11 @@
 * 容器nginx日志：/var/log/nginx/  
 * session,cache 数据
 * rabbitmq数据
+
 > `docker run -d -p 80:80  --name dev_angetech --restart=always -v /home/code/dev/angetech:/home/code/app sichuan_yd_video:1.0  `开发
+
+> `docker run -d -p 80:80  --name dev_angetech --restart=always -v /home/code/dev/angetech:/home/code/app -v /home/logs/dev/angetech/docker:/home/logs -v /home/session/dev/angetech/docker:/home/session -v /home/cache/dev/angetech/docker:/home/cache sichuan_yd_video:1.0  `开发
+
 > `docker run -d -p 8600:80 --name online_angetech --restart=always -v /home/code/online/angetech:/home/code/app -v /home/logs/online/angetech/docker:/home/logs -v /home/session/online/angetech/docker:/home/session -v /home/cache/online/angetech/docker:/home/cache  -v /home/logs/dev/angetech/docker/rabbitmq:/data/rabbitmq/mnesia angetech:1.0  `正式
     
 

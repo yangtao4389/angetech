@@ -49,6 +49,7 @@ def url_query_replace(url, name, value):
     parse_query_dict[name] = value
     pure_url = url.replace('?'+parse_query, '')
     ret = pure_url + "?" + urllib.parse.urlencode(parse_query_dict)
+
     return ret
 
 def get_client_query_str(request):
@@ -62,6 +63,7 @@ def get_client_HTTP_USER_AGENT(request):
         return request.META['HTTP_USER_AGENT']
     except:
         return None
+
 
 
 def decode_url(url):
@@ -83,4 +85,13 @@ def decode_url_query(url):
     pure_url = url.replace('?' + parse_query, '')
     ret = pure_url + "?" + urllib.parse.quote_plus(parse_query)
     return ret
+
+
+def get_all_post_data(request):
+    '''
+    获取所有post请求数据
+    :param request: 
+    :return: 
+    '''
+    return request.body
 

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import configparser
+
 from common.iniphaser import IniPhaser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -30,12 +31,15 @@ cf_dict = cf.as_dict()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '&$+ajc-s4o0@bhi3jh)gn!^7=%d8$%_=v3j$z7ul1__^pdfu43'
 
+
 if cf.get('OPTIONS', 'DEBUG') == "True":
     DEBUG = True
 else:
     DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
+
+
 
 # Application definition
 
@@ -46,18 +50,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'testSubTable',
     'testSubTable2',
+
+    'wxbackend',
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'wxbackend.checkUserMiddleware.CheckUserMiddleware',
 ]
 
 ROOT_URLCONF = 'angetech.urls'
@@ -70,7 +79,9 @@ WSGI_APPLICATION = 'angetech.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
+
      'default': cf_dict['DATABASE'],
+
 }
 
 
@@ -95,6 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
+
 LANGUAGE_CODE = 'zh-hans'
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -102,7 +114,9 @@ USE_I18N = True
 
 USE_L10N = False
 
+
 USE_TZ = False
+
 
 # 日期格式设置
 DATE_FORMAT = 'Y-m-d'
@@ -148,11 +162,13 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
+
             'format': 'angetech %(levelname)s %(asctime)s %(module)s %(funcName)s %(lineno)d %(message)s'
         },
         'simple': {
             'format': 'angetech %(levelname)s %(message)s'
         },
+
     },
     'handlers': {
         'mail_admins': {
@@ -166,7 +182,9 @@ LOGGING = {
             'formatter': 'verbose',
             'maxBytes': 1024 * 1024 * 100,  # 文件大小 5*1024*1024 bytes (5MB)
             'backupCount': 1,
+
             'filename': os.path.join(LOG_DIR, "%s.log"%PRODUCT_KEY),
+
         },
     },
     'loggers': {
@@ -214,6 +232,7 @@ CACHES = {
 }
 
 
+
 # 不用验证信息的url
 SERVICE_FILTER_URLS = [
     (r'^/admin/*'),
@@ -224,5 +243,8 @@ SERVICE_FILTER_URLS = [
     (r'%s*' % STATIC_URL),
     (r'%s*' % MEDIA_URL),
     (r'/favicon.ico'),
-
 ]
+
+# 这样就不用转/
+APPEND_SLASH=False
+
