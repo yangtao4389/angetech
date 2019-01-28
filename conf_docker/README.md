@@ -16,22 +16,22 @@
 * 容器nginx日志：/var/log/nginx/  
 * session,cache 数据
 * rabbitmq数据
-> `docker run -d -p 8601:80  --name dev_angetech --restart=always -v /home/code/dev/angetech:/home/code/app -v /home/logs/dev/angetech/docker:/home/logs -v /home/session/dev/angetech/docker:/home/session -v /home/cache/dev/angetech/docker:/home/cache -v /home/logs/dev/angetech/docker/rabbitmq:/data/rabbitmq/mnesia angetech:1.0  `开发
+> `docker run -d -p 80:80  --name dev_angetech --restart=always -v /home/code/dev/angetech:/home/code/app sichuan_yd_video:1.0  `开发
 > `docker run -d -p 8600:80 --name online_angetech --restart=always -v /home/code/online/angetech:/home/code/app -v /home/logs/online/angetech/docker:/home/logs -v /home/session/online/angetech/docker:/home/session -v /home/cache/online/angetech/docker:/home/cache  -v /home/logs/dev/angetech/docker/rabbitmq:/data/rabbitmq/mnesia angetech:1.0  `正式
     
 
 ### 容器操作 
 以下的6c33d849a971为容器id
 * 进入终端页面  
->`docker exec -it 969fb21c364e /bin/bash`
+>`docker exec -it 855801dd47b6 /bin/bash`
 * 查看supervisorctl 状态
-> `docker exec -it 969fb21c364e supervisorctl status`
+> `docker exec -it 855801dd47b6 supervisorctl status`
 * 重启supervisor
-> `docker exec -it 969fb21c364e supervisorctl reload`
+> `docker exec -it 855801dd47b6 supervisorctl reload`
 * 重启uwsgi
-> `docker exec -it 969fb21c364e supervisorctl restart app-uwsgi`
+> `docker exec -it 855801dd47b6 supervisorctl restart app-uwsgi`
 * 重启nginx
-> `docker exec -it 969fb21c364e supervisorctl restart nginx-app`
+> `docker exec -it 855801dd47b6 supervisorctl restart nginx-app`
 * 当有些启动不起来，比方rabbitmq，可以先ps 关闭进程，然后再用supervisorctl 重启
 
 ### 参考链接

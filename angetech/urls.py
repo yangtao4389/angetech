@@ -20,4 +20,5 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     url("wxbackend/",include("wxbackend.urls")),
+    url("testSubTable/",include("testSubTable.urls")),
 ]
